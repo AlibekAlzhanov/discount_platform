@@ -1,0 +1,26 @@
+{
+  "name": "discount-platform",
+  "version": "1.0.0",
+  "description": "Discount platform (frontend + backend)",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "frontend": "cd apps/client-app && npx expo start -c",
+    "backend": "cd backend && npm run start:dev",
+    "dev": "concurrently --kill-others-on-fail \"npm:backend\" \"npm:frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlibekAlzhanov/discount_platform.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlibekAlzhanov/discount_platform/issues"
+  },
+  "homepage": "https://github.com/AlibekAlzhanov/discount_platform#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
