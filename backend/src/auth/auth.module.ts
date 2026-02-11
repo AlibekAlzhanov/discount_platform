@@ -1,0 +1,32 @@
+import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { ConfigModule } from '@nestjs/config';
+import { AuthService } from './auth.service';
+import { AuthController } from './auth.controller';
+import { UsersModule } from '../users/users.module';
+import { MailModule } from '../mail/mail.module';
+import { JwtStrategy } from './strategies/jwt.strategy';
+import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
+
+/**
+ * Модуль аутентификации и авторизации
+ * 
+ * Включает:
+ * - JWT токены (access и refresh)
+ * - Passport стратегии
+ * - Интеграция с UsersModule и MailModule
+ */
+@Module({
+  imports: [
+    ConfigModule,
+    UsersModule,
+    MailModule,
+    PassportModule,
+    JwtModule.register({}), // Пустая конфигурация, т.к. используем динамические секреты
+  ],
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy, JwtRefreshStrategy],
+  exports: [AuthService],
+})
+export class AuthModule {}
